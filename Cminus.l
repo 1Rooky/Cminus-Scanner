@@ -78,17 +78,16 @@ TokenType getToken(void)
   { firstTime = FALSE;
     lineno++;
     yyout = fopen("tokens.txt", "w");
-	  tokens = yyout;
+	
 
   }
   currentToken = yylex();
   strncpy(tokenString,yytext,MAXTOKENLEN);
-  fprintf(tokens,"\t%d: ",lineno);
+  fprintf(yyout,"\t%d: ",lineno);
   printToken(currentToken,tokenString);
-
   return currentToken;
 }
-void printToken( TokenType token, const char* tokenString )
+void printToken(TokenType token, const char* tokenString )
 { 
   switch (token)
   { 
@@ -97,40 +96,32 @@ void printToken( TokenType token, const char* tokenString )
     case ELSE:
     case VOID:
     case WHILE:
-    case INT:    fprintf(tokens,    "reserved word: %s\n",tokenString);  break;
-    case ASSIGN: fprintf(tokens,"=  ASSIGN\n"); break;
-    case LT:     fprintf(tokens,"<  LT\n");     break;
-    case LE:     fprintf(tokens,"<=  LE\n");    break;
-    case GT:     fprintf(tokens,">  GT\n");     break;
-    case GE:     fprintf(tokens,">=  GE\n");    break;
-    case EQ:     fprintf(tokens,"==  EQ\n");    break;
-    case NE:     fprintf(tokens,"!=  NE\n");    break;
-    case LPAREN: fprintf(tokens,"(  LPAREN\n"); break;
-    case RPAREN: fprintf(tokens,")  RPAREN\n"); break;
-    case SEMI:   fprintf(tokens,";  SEMI\n");   break;
-    case PLUS:   fprintf(tokens,"+  PLUS\n");   break;
-    case MINUS:  fprintf(tokens,"-  MINUS\n");  break;
-    case TIMES:  fprintf(tokens,"*  TIMES\n");  break;
-    case OVER:   fprintf(tokens,"/  OVER\n");   break;
-    case COMMA:  fprintf(tokens,",  COMMA\n");  break;
-    case LBRACE: fprintf(tokens,"[  LBRACE\n"); break;
-    case RBRACE: fprintf(tokens,"]  RBRACE\n"); break;
-    case LCURLY: fprintf(tokens,"{  LCURLY\n"); break;
-    case RCURLY: fprintf(tokens,"}  RCURLY\n"); break;
-    case ENDFILE:fprintf(tokens,"EOF\n");       break;
-    case NUM:    fprintf(tokens, "NUM, val= %s\n",tokenString);   break;
-    case ID:     fprintf(tokens,  "ID, name= %s\n",tokenString);  break;
-    case ERROR:  fprintf(tokens,   "ERROR: %s\n",tokenString);    break;
-    default:     fprintf(tokens,"Unknown token: %d\n",token);
+    case INT:    fprintf(yyout,    "reserved word: %s\n",tokenString);  break;
+    case ASSIGN: fprintf(yyout,"=  ASSIGN\n"); break;
+    case LT:     fprintf(yyout,"<  LT\n");     break;
+    case LE:     fprintf(yyout,"<=  LE\n");    break;
+    case GT:     fprintf(yyout,">  GT\n");     break;
+    case GE:     fprintf(yyout,">=  GE\n");    break;
+    case EQ:     fprintf(yyout,"==  EQ\n");    break;
+    case NE:     fprintf(yyout,"!=  NE\n");    break;
+    case LPAREN: fprintf(yyout,"(  LPAREN\n"); break;
+    case RPAREN: fprintf(yyout,")  RPAREN\n"); break;
+    case SEMI:   fprintf(yyout,";  SEMI\n");   break;
+    case PLUS:   fprintf(yyout,"+  PLUS\n");   break;
+    case MINUS:  fprintf(yyout,"-  MINUS\n");  break;
+    case TIMES:  fprintf(yyout,"*  TIMES\n");  break;
+    case OVER:   fprintf(yyout,"/  OVER\n");   break;
+    case COMMA:  fprintf(yyout,",  COMMA\n");  break;
+    case LBRACE: fprintf(yyout,"[  LBRACE\n"); break;
+    case RBRACE: fprintf(yyout,"]  RBRACE\n"); break;
+    case LCURLY: fprintf(yyout,"{  LCURLY\n"); break;
+    case RCURLY: fprintf(yyout,"}  RCURLY\n"); break;
+    case ENDFILE:fprintf(yyout,"EOF\n");       break;
+    case NUM:    fprintf(yyout, "NUM, val= %s\n",tokenString);   break;
+    case ID:     fprintf(yyout,  "ID, name= %s\n",tokenString);  break;
+    case ERROR:  fprintf(yyout,   "ERROR: %s\n",tokenString);    break;
+    default:     fprintf(yyout,"Unknown token: %d\n",token);
   }
-}
-
-
-static void printSpaces(void)
-{ 
-  int i;
-  for (i=0;i<indentno;i++)
-    fprintf(tokens," ");
 }
 
 int main()

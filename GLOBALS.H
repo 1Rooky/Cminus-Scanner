@@ -2,9 +2,6 @@
 #define FALSE 0
 #define TRUE 1
 #define MAXTOKENLEN 40
-#define INDENT indentno+=2
-#define UNINDENT indentno-=2
-#define MAXRESERVED 6 
 
 
 #include <stdio.h>
@@ -16,11 +13,8 @@
  FILE* source; 
  FILE* tokens; 
 
-static int indentno = 0;
+
 int lineno; 
-int TraceScan;
-extern int TraceAnalyze;
-extern int TraceCode;
 extern int Error;
 extern char tokenString[MAXTOKENLEN+1];
 
@@ -40,5 +34,3 @@ typedef enum
 TokenType getToken(void);
 
 void printToken( TokenType, const char* );
-
-

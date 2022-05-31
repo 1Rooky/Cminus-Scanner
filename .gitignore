@@ -2,3 +2,4 @@
 lex.yy.c
 source.txt
 tokens.txt
+.vscode
