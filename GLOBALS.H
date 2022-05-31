@@ -10,10 +10,6 @@
 #include <string.h>
 
 
- FILE* source; 
- FILE* tokens; 
-
-
 int lineno; 
 extern int Error;
 extern char tokenString[MAXTOKENLEN+1];

@@ -130,8 +130,7 @@ int main()
   char filename[50];
   printf("Please Enter The Source Code File Name : \n");
   scanf("%s",filename);
-  source = fopen(filename,"r");
-  yyin = source;
+  yyin = fopen(filename,"r");
 	while (getToken()){}
   printf("\nLexical Analysis is Done . . .\n");
 
